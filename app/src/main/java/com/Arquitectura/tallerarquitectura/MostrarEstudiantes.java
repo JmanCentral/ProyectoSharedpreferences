@@ -1,6 +1,7 @@
 package com.Arquitectura.tallerarquitectura;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,10 +32,10 @@ public class MostrarEstudiantes extends AppCompatActivity {
 
         datos = findViewById(R.id.tv_datos);
 
-        SharedPreferences preferences = getSharedPreferences("datos_estudiantes", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
         int estudianteContador = preferences.getInt("estudiante", 0);
 
-        StringBuilder estudiantesInfo = new StringBuilder();
+        StringBuilder estudiantesInformacion = new StringBuilder();
         for (int i = 0; i < estudianteContador; i++) {
             String id = "estudiante_" + i;
             String nombre = preferences.getString(id + "_nombre", "N/A");
@@ -46,7 +47,7 @@ public class MostrarEstudiantes extends AppCompatActivity {
             Float notaFinal = preferences.getFloat(id + "_notaFinal", 0);
             String estado = preferences.getString(id + "_estado", "N/A");
 
-            estudiantesInfo.append("Nombre del Estudiante: ").append(nombre)
+            estudiantesInformacion.append("Nombre del Estudiante: ").append(nombre)
                     .append("\nNombre de la Asignatura: ").append(asignatura)
                     .append("\nFecha: ").append(fecha)
                     .append("\nCorte 1: ").append("                              ").append(nota1)
@@ -55,7 +56,8 @@ public class MostrarEstudiantes extends AppCompatActivity {
                     .append("\nNota Final: ").append(notaFinal).append("                 ").append(estado)
                     .append("\n\n");
         }
-        datos.setText(estudiantesInfo.toString());
+
+        datos.setText(estudiantesInformacion.toString());
 
     }
     public void regresar1(View view) {

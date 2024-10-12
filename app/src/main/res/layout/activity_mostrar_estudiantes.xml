@@ -23,9 +23,11 @@
         android:id="@+id/tv_datos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="36dp"
         android:inputType="textMultiLine"
         android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titulo2"
         tools:ignore="MissingConstraints" />
 

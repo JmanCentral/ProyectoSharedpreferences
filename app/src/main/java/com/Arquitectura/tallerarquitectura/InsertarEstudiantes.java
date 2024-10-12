@@ -1,6 +1,7 @@
 package com.Arquitectura.tallerarquitectura;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -139,7 +140,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
             }
 
             if (!nombre.matches("^[a-zA-Z\\s]+$") ) {
-                Toast.makeText(this, "Ingreses caracteres validos para los campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ingreses caracteres validos para el nombre", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -179,7 +180,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
             Float notaFinalFormateada = Float.valueOf(String.format("%.1f", notaFinal));
 
 
-            SharedPreferences preferences = getSharedPreferences("datos_estudiantes", MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
 
             int estudianteContador = preferences.getInt("estudiante", 0);
