@@ -36,6 +36,7 @@ public class MostrarEstudiantes extends AppCompatActivity {
         int estudianteContador = preferences.getInt("estudiante", 0);
 
         StringBuilder estudiantesInformacion = new StringBuilder();
+
         for (int i = 0; i < estudianteContador; i++) {
             String id = "estudiante_" + i;
             String nombre = preferences.getString(id + "_nombre", "N/A");
