@@ -51,10 +51,10 @@ public class MostrarEstudiantes extends AppCompatActivity {
             estudiantesInformacion.append("Nombre del Estudiante: ").append(nombre)
                     .append("\nNombre de la Asignatura: ").append(asignatura)
                     .append("\nFecha: ").append(fecha)
-                    .append("\nCorte 1: ").append("                              ").append(nota1)
+                    .append("\n\nCorte 1: ").append("                              ").append(nota1)
                     .append("\nCorte 2: ").append("                              ").append(nota2)
                     .append("\nCorte 3: ").append("                              ").append(nota3)
-                    .append("\nNota Final: ").append(notaFinal).append("                 ").append(estado)
+                    .append("\nNota Final: ").append("                         ").append(notaFinal).append("     ").append(estado)
                     .append("\n\n");
         }
 

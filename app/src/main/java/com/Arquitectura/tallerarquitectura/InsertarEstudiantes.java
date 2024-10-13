@@ -40,8 +40,12 @@ public class InsertarEstudiantes extends AppCompatActivity {
             return insets;
         });
 
-        txt_nombre = findViewById(R.id.txt_nombre);
-        spinner_asignatura = findViewById(R.id.spinner);
+        txt_nombre = (EditText) findViewById(R.id.txt_nombre);
+        spinner_asignatura = (Spinner) findViewById(R.id.spinner);
+        txt_nota1 = (EditText) findViewById(R.id.txt_nota1);
+        txt_nota2 =  (EditText)  findViewById(R.id.txt_nota2);
+        txt_nota3 = (EditText) findViewById(R.id.txt_nota3);
+
 
         String [] opciones = {
                 // Primer Nivel
@@ -123,9 +127,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
         ArrayAdapter <String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, opciones);
         spinner_asignatura.setAdapter(adapter);
 
-        txt_nota1 = findViewById(R.id.txt_nota1);
-        txt_nota2 = findViewById(R.id.txt_nota2);
-        txt_nota3 = findViewById(R.id.txt_nota3);
+
     }
 
     public void guardar1(View view) {
@@ -172,9 +174,9 @@ public class InsertarEstudiantes extends AppCompatActivity {
             String estado;
 
             if (notaFinal <  3.0) {
-                estado = "Reprobado";
+                estado = "No Aprobó";
             } else {
-                estado = "Aprobado";
+                estado = "Aprobó";
             }
 
             Float notaFinalFormateada = Float.valueOf(String.format("%.1f", notaFinal));
@@ -211,7 +213,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
 
     public void saludar (View view)
         {
-        Toast.makeText(this, "Bienvenido al registro de nootas", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Bienvenido al registro de notas", Toast.LENGTH_SHORT).show();
     }
 
 
