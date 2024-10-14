@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MostrarEstudiantes extends AppCompatActivity {
 
+    //Inicializar variables
     TextView datos;
 
     @SuppressLint("MissingInflatedId")
@@ -30,13 +31,17 @@ public class MostrarEstudiantes extends AppCompatActivity {
             return insets;
         });
 
-        datos = findViewById(R.id.tv_datos);
+        // Asignar variables
+        datos = (TextView) findViewById(R.id.tv_datos);
 
+        // Mostrar los datos de los estudiantes guardados en SharedPreferences
         SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
+        // Obtener el número de estudiantes guardados
         int estudianteContador = preferences.getInt("estudiante", 0);
 
+        // Construir una cadena con la información de los estudiantes
         StringBuilder estudiantesInformacion = new StringBuilder();
-
+        // Recorrer los estudiantes y agregar su información a la cadena
         for (int i = 0; i < estudianteContador; i++) {
             String id = "estudiante_" + i;
             String nombre = preferences.getString(id + "_nombre", "N/A");
@@ -48,6 +53,7 @@ public class MostrarEstudiantes extends AppCompatActivity {
             Float notaFinal = preferences.getFloat(id + "_notaFinal", 0);
             String estado = preferences.getString(id + "_estado", "N/A");
 
+            // Agregar la información del estudiante a la cadena
             estudiantesInformacion.append("Nombre del Estudiante: ").append(nombre)
                     .append("\nNombre de la Asignatura: ").append(asignatura)
                     .append("\nFecha: ").append(fecha)
@@ -57,11 +63,12 @@ public class MostrarEstudiantes extends AppCompatActivity {
                     .append("\nNota Final: ").append("                         ").append(notaFinal).append("     ").append(estado)
                     .append("\n\n");
         }
-
+        // Mostrar la información de los estudiantes en el TextView
         datos.setText(estudiantesInformacion.toString());
 
     }
-    public void regresar1(View view) {
+    //Regresar a la actividad anterior
+    public void Regresar(View view) {
         Intent intent = new Intent(this, InsertarEstudiantes.class);
         startActivity(intent);
     }

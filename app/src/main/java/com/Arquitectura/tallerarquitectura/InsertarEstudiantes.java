@@ -22,6 +22,7 @@ import java.util.Date;
 
 public class InsertarEstudiantes extends AppCompatActivity {
 
+    //Declaracion de variables
     EditText txt_nombre;
     Spinner spinner_asignatura;
     EditText txt_nota1;
@@ -40,13 +41,14 @@ public class InsertarEstudiantes extends AppCompatActivity {
             return insets;
         });
 
+        //Inicializacion de variables
         txt_nombre = (EditText) findViewById(R.id.txt_nombre);
         spinner_asignatura = (Spinner) findViewById(R.id.spinner);
         txt_nota1 = (EditText) findViewById(R.id.txt_nota1);
         txt_nota2 =  (EditText)  findViewById(R.id.txt_nota2);
         txt_nota3 = (EditText) findViewById(R.id.txt_nota3);
 
-
+        //Creacion de lista de asignaturas
         String [] opciones = {
                 // Primer Nivel
                 "Matemáticas I",
@@ -123,72 +125,87 @@ public class InsertarEstudiantes extends AppCompatActivity {
                 "Optativa de Profundización III: Modelado 3D y Videojuegos"
         };
 
-
+        //Creacion del adaptador
         ArrayAdapter <String> adapter = new ArrayAdapter<>(this, R.layout.item_spinner, opciones);
         spinner_asignatura.setAdapter(adapter);
 
 
     }
 
-    public void guardar1(View view) {
+    //Metodo para guardar los datos de los estudiantes en el SharedPreferences
+    public void Guardar(View view) {
 
         try {
 
+            // Declaracion de variables
             String nombre = txt_nombre.getText().toString();
 
+            //Validacion de campos vacios
             if (nombre.isEmpty()) {
-                Toast.makeText(this, "Error: los campos estan vacios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Error: El nombre está vacío", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (!nombre.matches("^[a-zA-Z\\s]+$") ) {
+            //Validacion de caracteres validos para el nombre
+
+            if (!nombre.matches("^[a-zA-Z\\s]+$")) {
                 Toast.makeText(this, "Ingreses caracteres validos para el nombre", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            //Declaracion de la variable de asig
             String asignatura = spinner_asignatura.getSelectedItem().toString();
 
-
+            //Crear el constructor de fecha
             Date date = new Date();
 
+            //Crear el formato de fecha
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String fechaactual = dateFormat.format(date);
 
-
+            //Validacion de notas
             String nota1 = txt_nota1.getText().toString();
             String nota2 = txt_nota2.getText().toString();
             String nota3 = txt_nota3.getText().toString();
 
+            //Convertir las notas a float
             Float notauna = Float.parseFloat(nota1);
             Float notados = Float.parseFloat(nota2);
             Float notatres = Float.parseFloat(nota3);
-            Float not;
 
+            //Validacion de notas validas
             if (notauna < 0 || notauna > 5 || notados < 0 || notados > 5 || notatres < 0 || notatres > 5) {
                 Toast.makeText(this, "Ingrese notas validas", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            //Calculo de la nota final
             Float notaFinal = (notauna * 0.3f) + (notados * 0.3f) + (notatres * 0.4f);
 
+            //Validacion del estado del estudiante si aprobó o reprobó
             String estado;
 
+            //Validacion del estado
             if (notaFinal <  3.0) {
                 estado = "No Aprobó";
             } else {
                 estado = "Aprobó";
             }
 
+            //Formatear la nota final
             Float notaFinalFormateada = Float.valueOf(String.format("%.1f", notaFinal));
 
-
+            //Guardar los datos en el SharedPreferences
             SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
 
+            //Obtener el contador de estudiantes y guardar los datos
             int estudianteContador = preferences.getInt("estudiante", 0);
 
+            //Crear el constructor del estudiante
             String Estudiante = "estudiante_" + estudianteContador + "_";
 
+            //Guardar los datos en el SharedPreferences
             editor.putString(Estudiante + "nombre", nombre);
             editor.putString(Estudiante + "asignatura", asignatura);
             editor.putString(Estudiante + "fecha", fechaactual);
@@ -197,20 +214,25 @@ public class InsertarEstudiantes extends AppCompatActivity {
             editor.putFloat(Estudiante + "nota3", notatres);
             editor.putFloat(Estudiante + "notaFinal", notaFinalFormateada);
             editor.putString(Estudiante + "estado", estado);
+            //Guardar el contador de estudiantes
             editor.putInt("estudiante", estudianteContador + 1);
-            editor.apply();
+            editor.commit();
 
             Toast.makeText(this, "Registro guardado con exito", Toast.LENGTH_SHORT).show();
 
+            //Cacth para validar errores
         } catch (NumberFormatException e ) {
             Toast.makeText(this, "Error: una o más notas están vacías", Toast.LENGTH_SHORT).show();
         }
     }
-    public void Mostrar1(View view) {
+
+    //Metodo para mostrar los datos de los estudiantes en el SharedPreferences
+    public void Mostrar(View view) {
         Intent intent = new Intent(this, MostrarEstudiantes.class);
         startActivity(intent);
     }
 
+    //Metodo para saludar al usuario al clickear la imagen
     public void saludar (View view)
         {
         Toast.makeText(this, "Bienvenido al registro de notas", Toast.LENGTH_SHORT).show();

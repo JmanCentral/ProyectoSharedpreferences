@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:backgroundTint="#2EBC33"
-        android:onClick="regresar1"
+        android:onClick="Regresar"
         android:text="@string/btn_regresar"
         android:textColor="@color/white"
         android:textSize="25sp"
