@@ -54,8 +54,8 @@ public class MostrarEstudiantes extends AppCompatActivity {
             String estado = preferences.getString(id + "_estado", "N/A");
 
             // Agregar la información del estudiante a la cadena
-            estudiantesInformacion.append("Nombre del Estudiante: ").append(nombre)
-                    .append("\nNombre de la Asignatura: ").append(asignatura)
+            estudiantesInformacion.append("Estudiante: ").append(nombre)
+                    .append("\nAsignatura: ").append(asignatura)
                     .append("\nFecha: ").append(fecha)
                     .append("\n\nCorte 1: ").append("                              ").append(nota1)
                     .append("\nCorte 2: ").append("                              ").append(nota2)
