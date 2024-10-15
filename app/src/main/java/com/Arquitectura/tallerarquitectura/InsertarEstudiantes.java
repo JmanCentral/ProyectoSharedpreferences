@@ -142,13 +142,13 @@ public class InsertarEstudiantes extends AppCompatActivity {
 
             //Validacion de campos vacios
             if (nombre.isEmpty()) {
-                Toast.makeText(this, "Error: El nombre está vacío", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "El nombre está vacío", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             //Validacion de caracteres validos para el nombre
 
-            if (!nombre.matches("^[a-zA-Z\\s]+$")) {
+            if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
                 Toast.makeText(this, "Ingreses caracteres validos para el nombre", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -175,7 +175,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
 
             //Validacion de notas validas
             if (notauna < 0 || notauna > 5 || notados < 0 || notados > 5 || notatres < 0 || notatres > 5) {
-                Toast.makeText(this, "Ingrese notas validas", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ingrese notas validas ente 0 a 5", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -222,7 +222,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
 
             //Cacth para validar errores
         } catch (NumberFormatException e ) {
-            Toast.makeText(this, "Error: una o más notas están vacías", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese todas las notas", Toast.LENGTH_SHORT).show();
         }
     }
 
