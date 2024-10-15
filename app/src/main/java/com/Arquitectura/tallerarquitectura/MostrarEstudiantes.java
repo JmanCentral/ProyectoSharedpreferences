@@ -35,7 +35,7 @@ public class MostrarEstudiantes extends AppCompatActivity {
         datos = (TextView) findViewById(R.id.tv_datos);
 
         // Mostrar los datos de los estudiantes guardados en SharedPreferences
-        SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Estudiantes", Context.MODE_PRIVATE);
         // Obtener el número de estudiantes guardados
         int estudianteContador = preferences.getInt("estudiante", 0);
 

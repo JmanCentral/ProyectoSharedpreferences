@@ -196,7 +196,7 @@ public class InsertarEstudiantes extends AppCompatActivity {
             Float notaFinalFormateada = Float.valueOf(String.format("%.1f", notaFinal));
 
             //Guardar los datos en el SharedPreferences
-            SharedPreferences preferences = getSharedPreferences("estudiantes", Context.MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences("Estudiantes", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
 
             //Obtener el contador de estudiantes y guardar los datos
